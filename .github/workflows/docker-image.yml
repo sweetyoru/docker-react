@@ -14,10 +14,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile.dev --tag sweetyoru/docker-react
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Test the Docker image
+    - name: Test the docker image
       run: docker run sweetyoru/docker-react npm run test -- --coverage
