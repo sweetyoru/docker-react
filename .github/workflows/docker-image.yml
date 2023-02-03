@@ -6,8 +6,10 @@ on:
   pull_request:
     branches: [ "master" ]
 
-jobs:
+env:
+ CI: true
 
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
