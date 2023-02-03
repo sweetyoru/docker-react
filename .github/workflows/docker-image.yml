@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "master" ]
 
-env:
-  CI: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,4 +14,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile.dev --tag sweetyoru/docker-react
     - name: Test the docker image
-      run: docker run sweetyoru/docker-react npm run test -- --coverage
+      run: docker run -e CI=true sweetyoru/docker-react npm run test a
