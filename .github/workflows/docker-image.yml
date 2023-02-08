@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@master
         with:
           context: .
-          dockerfile: Dockerfile.dev
+          file: Dockerfile.dev
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-react:dev
           push: true
 
@@ -72,6 +72,6 @@ jobs:
         uses: docker/build-push-action@master
         with:
           context: .
-          dockerfile: Dockerfile.dev
+          file: Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-react:latest
           push: true
