@@ -12,16 +12,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the dev docker image
-      run: docker build . --file Dockerfile.dev --tag sweetyoru/docker-react:dev
+      run: docker build . --file Dockerfile.dev --tag docker-react:dev
   test-dev:
     runs-on: ubuntu-latest
     needs: build-dev
     steps:
     - name: Test the dev docker image
-      run: docker run -e CI=true sweetyoru/docker-react:dev npm run test a
-  release:
+      run: docker run -e CI=true docker-react:dev npm run test a
+  build-release:
     runs-on: ubuntu-latest
     needs: test-dev
     steps:
     - name: Build the release docker image
-      run: docker build . --file Dockerfile --tag sweetyoru/docker-react
+      run: docker build . --file Dockerfile --tag docker-react:latest
