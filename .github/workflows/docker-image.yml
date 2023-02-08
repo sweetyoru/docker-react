@@ -7,11 +7,21 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  build-dev:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile.dev --tag sweetyoru/docker-react
-    - name: Test the docker image
-      run: docker run -e CI=true sweetyoru/docker-react npm run test a
+    - name: Build the dev docker image
+      run: docker build . --file Dockerfile.dev --tag sweetyoru/docker-react:dev
+  test-dev:
+    runs-on: ubuntu-latest
+    needs: build-dev
+    steps:
+    - name: Test the dev docker image
+      run: docker run -e CI=true sweetyoru/docker-react:dev npm run test a
+  release:
+    runs-on: ubuntu-latest
+    needs: test-dev
+    steps:
+    - name: Build the release docker image
+      run: docker build . --file Dockerfile --tag sweetyoru/docker-react
