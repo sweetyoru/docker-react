@@ -90,7 +90,7 @@ jobs:
         run: zip deploy.zip Dockerrun.aws.json
 
       - name: Deploy to aws beantalk
-        uses: einaregilsson/beanstalk-deploy@current
+        uses: einaregilsson/beanstalk-deploy@master
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
